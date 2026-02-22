@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "RepFlow",
+    "slug": "repflow",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0D0D0F"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.repflow.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0D0D0F"
+      },
+      "package": "com.repflow.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "name": "RepFlow",
+      "shortName": "RepFlow",
+      "description": "Train with intention.",
+      "themeColor": "#0D0D0F",
+      "backgroundColor": "#0D0D0F",
+      "display": "standalone",
+      "orientation": "portrait",
+      "lang": "en"
+    },
+    "plugins": ["expo-font"]
+  }
+}
