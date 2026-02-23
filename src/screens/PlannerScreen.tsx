@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { MotiView } from 'moti';
 import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
@@ -36,13 +36,20 @@ export function PlannerScreen({ navigation }: any) {
       ) : (
         <>
           {workoutPlans.map((plan, i) => (
-            <WorkoutPlanCard key={plan.id} plan={plan} index={i}
-              onPress={() => navigation.navigate('WorkoutDetail', { planId: plan.id })}
-              onLongPress={() => handleDelete(plan.id, plan.name)} />
+            <View key={plan.id} style={{ position: 'relative' }}>
+              <WorkoutPlanCard
+                plan={plan}
+                index={i}
+                onPress={() => navigation.navigate('WorkoutDetail', { planId: plan.id })}
+              />
+              <TouchableOpacity
+                onPress={() => handleDelete(plan.id, plan.name)}
+                style={[styles.deleteBtn, { backgroundColor: colors.bgCard, borderColor: colors.border }]}
+              >
+                <Ionicons name="trash-outline" size={16} color={colors.error} />
+              </TouchableOpacity>
+            </View>
           ))}
-          <Text style={[Typography.xs, { color: colors.textTertiary, textAlign: 'center', marginTop: 8 }]}>
-            Long press a plan to delete it
-          </Text>
         </>
       )}
     </Screen>
@@ -51,4 +58,16 @@ export function PlannerScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   empty: { marginTop: 40, padding: 40, borderRadius: Radius.xl, borderWidth: 1, alignItems: 'center' },
+  deleteBtn: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+  },
 });
