@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "buildCommand": "npx expo export --platform web --clear && cp -r assets dist/",
+  "buildCommand": "npx expo export --platform web --clear && cp -r assets dist/ && cp -r web dist/ && sed -i 's|</head>|<link rel=\"manifest\" href=\"/web/manifest.json\"><meta name=\"theme-color\" content=\"#0D0D0F\"></head>|' dist/index.html",
   "outputDirectory": "dist",
   "framework": null,
   "routes": [
     { "src": "/static/(.*)", "dest": "/static/$1" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/web/(.*)", "dest": "/web/$1" },
     { "src": "/(.*\\.(js|css|png|jpg|ico|json|map))", "dest": "/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
