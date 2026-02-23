@@ -36,7 +36,7 @@ export function PlannerScreen({ navigation }: any) {
       ) : (
         <>
           {workoutPlans.map((plan, i) => (
-            <View key={plan.id} style={{ position: 'relative' }}>
+            <View key={plan.id} style={{ marginBottom: 4 }}>
               <WorkoutPlanCard
                 plan={plan}
                 index={i}
@@ -44,9 +44,10 @@ export function PlannerScreen({ navigation }: any) {
               />
               <TouchableOpacity
                 onPress={() => handleDelete(plan.id, plan.name)}
-                style={[styles.deleteBtn, { backgroundColor: colors.bgCard, borderColor: colors.border }]}
+                style={[styles.deleteBtn, { backgroundColor: 'rgba(239,68,68,0.08)', borderColor: 'rgba(239,68,68,0.2)' }]}
               >
-                <Ionicons name="trash-outline" size={16} color={colors.error} />
+                <Ionicons name="trash-outline" size={14} color={colors.error} />
+                <Text style={[Typography.smMedium, { color: colors.error, marginLeft: 6 }]}>Delete Plan</Text>
               </TouchableOpacity>
             </View>
           ))}
@@ -59,15 +60,13 @@ export function PlannerScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   empty: { marginTop: 40, padding: 40, borderRadius: Radius.xl, borderWidth: 1, alignItems: 'center' },
   deleteBtn: {
-    position: 'absolute',
-    top: 12,
-    right: 12,
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    borderWidth: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 10,
+    paddingVertical: 8,
+    marginTop: -6,
+    marginBottom: 12,
+    borderRadius: Radius.md,
+    borderWidth: 1,
   },
 });
