@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableOpacity, Platform } from 'react-native';
 import { MotiView } from 'moti';
 import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
@@ -14,10 +14,16 @@ export function PlannerScreen({ navigation }: any) {
   const { workoutPlans, deletePlan } = useStore(s => ({ workoutPlans: s.workoutPlans, deletePlan: s.deletePlan }));
 
   const handleDelete = (id: string, name: string) => {
-    Alert.alert(`Delete "${name}"?`, 'Completed sessions are preserved.', [
-      { text: 'Cancel', style: 'cancel' },
-      { text: 'Delete', style: 'destructive', onPress: () => deletePlan(id) },
-    ]);
+    if (Platform.OS === 'web') {
+      if ((window as any).confirm(`Delete "${name}"? Completed sessions are preserved.`)) {
+        deletePlan(id);
+      }
+    } else {
+      Alert.alert(`Delete "${name}"?`, 'Completed sessions are preserved.', [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'Delete', style: 'destructive', onPress: () => deletePlan(id) },
+      ]);
+    }
   };
 
   return (
