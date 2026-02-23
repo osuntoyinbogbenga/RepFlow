@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npx expo export --platform web --clear && cp -r assets dist/assets",
+  "buildCommand": "npx expo export --platform web --clear && cp -r assets dist/",
   "outputDirectory": "dist",
   "framework": null,
   "routes": [
